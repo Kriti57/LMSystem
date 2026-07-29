@@ -1,0 +1,40 @@
+﻿@model LMSystem.Models.HomeStatsViewModel
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="page-container" style="text-align:center; max-width:900px; margin:0 auto;">
+    <div style="font-size:2.5rem; margin-bottom:10px;">📖</div>
+    <h1 style="font-size:2.2rem;">Library Management System</h1>
+    <p style="color:#6b7280; max-width:600px; margin:0 auto 30px;">
+        One shelf for every book, every borrower, every due date — kept in order.
+    </p>
+
+    <div style="display:flex; gap:20px; justify-content:center; margin-bottom:40px;">
+        <div style="background:#faf8f2; border:1px solid #e8e4d8; border-radius:6px; padding:30px; flex:1;">
+            <h3>Books</h3>
+            <p style="color:#6b7280; font-size:0.9rem;">View, add, edit, and manage the library's full book collection.</p>
+            <a class="btn btn-add" asp-controller="Books" asp-action="Index">Manage Books →</a>
+        </div>
+        <div style="background:#faf8f2; border:1px solid #e8e4d8; border-radius:6px; padding:30px; flex:1;">
+            <h3>Magazines & Newspapers</h3>
+            <p style="color:#6b7280; font-size:0.9rem;">Manage periodicals and track circulation.</p>
+            <a class="btn btn-delete" asp-controller="Magazines" asp-action="Index">Manage Magazines →</a>
+        </div>
+    </div>
+
+    <div style="display:flex; background:#faf8f2; border:1px solid #e8e4d8; border-radius:6px; overflow:hidden;">
+        <div style="flex:1; padding:24px; border-right:1px solid #e8e4d8;">
+            <div style="font-size:1.8rem; font-weight:700;">@Model.TotalTitles</div>
+            <div style="color:#6b7280; font-size:0.85rem;">TITLES ON SHELF</div>
+        </div>
+        <div style="flex:1; padding:24px; border-right:1px solid #e8e4d8;">
+            <div style="font-size:1.8rem; font-weight:700;">@Model.CurrentlyBorrowed</div>
+            <div style="color:#6b7280; font-size:0.85rem;">CURRENTLY BORROWED</div>
+        </div>
+        <div style="flex:1; padding:24px;">
+            <div style="font-size:1.8rem; font-weight:700;">@Model.RegisteredStudents</div>
+            <div style="color:#6b7280; font-size:0.85rem;">REGISTERED MEMBERS</div>
+        </div>
+    </div>
+</div>

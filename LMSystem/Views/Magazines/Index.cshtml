@@ -1,0 +1,78 @@
+﻿@model IEnumerable<LMSystem.Models.Magazine>
+@{
+    ViewData["Title"] = "Magazines";
+}
+
+<div class="page-container">
+    <div class="page-header">
+        <div>
+            <h1>Magazines</h1>
+            <p>View, edit, and track every magazine in the collection.</p>
+        </div>
+        @if (User.IsInRole("Administrator") || User.IsInRole("Librarian"))
+        {
+            <a class="btn btn-add" asp-action="Create">+ Add New Magazine</a>
+        }
+    </div>
+
+    <form method="get" class="search-bar">
+        <input type="text" name="search" placeholder="Search by title or publisher..." />
+        <select name="status" onchange="this.form.submit()">
+            <option value="">All statuses</option>
+            <option value="Available">Available</option>
+            <option value="Borrowed">Borrowed</option>
+        </select>
+    </form>
+
+    <table class="data-table">
+        <thead>
+            <tr><th>Title</th><th>Publisher</th><th>Category</th><th>Issue</th><th>Status</th><th>Due Date</th><th>Actions</th></tr>
+        </thead>
+        <tbody>
+            @foreach (var m in Model)
+            {
+                <tr>
+                    <td>@m.Title</td>
+                    <td>@m.Publisher</td>
+                    <td>@m.Category</td>
+                    <td>@m.Issue</td>
+                    <td>
+                        @if (m.IsBorrowed)
+                        {
+                            <span class="badge badge-borrowed">BORROWED</span>
+                        }
+                        else
+                        {
+                            <span class="badge badge-available">AVAILABLE</span>
+                        }
+                    </td>
+                    <td>@(m.DueDate?.ToString("yyyy-MM-dd") ?? "—")</td>
+                    <td>
+                        @if (User.IsInRole("Administrator") || User.IsInRole("Librarian"))
+                        {
+                            <a class="btn btn-edit" asp-action="Edit" asp-route-id="@m.Id">Edit</a>
+                            <a class="btn btn-delete" asp-action="Delete" asp-route-id="@m.Id">Delete</a>
+                        }
+                        <a class="btn btn-details" asp-action="Details" asp-route-id="@m.Id">Details</a>
+                        @if (User.Identity?.IsAuthenticated == true)
+                        {
+                            @if (!m.IsBorrowed && User.IsInRole("Member"))
+                            {
+                                <a class="btn btn-borrow" asp-action="Borrow" asp-route-id="@m.Id">Borrow</a>
+                            }
+                            else if (m.BorrowedByUserId == User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)!.Value
+                                     || User.IsInRole("Administrator") || User.IsInRole("Librarian"))
+                            {
+                                <a class="btn btn-borrow" asp-action="Return" asp-route-id="@m.Id">Return</a>
+                            }
+                            else
+                            {
+                                <span class="btn btn-disabled">Borrowed</span>
+                            }
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

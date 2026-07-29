@@ -1,0 +1,13 @@
+﻿@model LMSystem.Models.Newspaper
+@{
+    ViewData["Title"] = "Newspaper Details";
+}
+
+<div class="page-container">
+    <h2>@Model.Title</h2>
+    <p><strong>Publisher:</strong> @Model.Publisher</p>
+    <p><strong>Language:</strong> @Model.Language</p>
+    <p><strong>Date:</strong> @Model.Date.ToString("yyyy-MM-dd")</p>
+    <p><strong>Status:</strong> @(Model.IsBorrowed ? "Borrowed" : "Available")</p>
+    <a class="btn btn-edit" asp-action="Index">Back to Newspapers</a>
+</div>

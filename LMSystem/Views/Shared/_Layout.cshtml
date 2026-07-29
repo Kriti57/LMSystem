@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Library Management</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <nav class="navbar-custom">
+        <a class="brand" asp-controller="Home" asp-action="Index">📚 Library Management</a>
+        <div class="nav-links">
+            <a asp-controller="Books" asp-action="Index">Books</a>
+            <a asp-controller="Magazines" asp-action="Index">Magazines</a>
+            <a asp-controller="Newspapers" asp-action="Index">Newspapers</a>
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+                @if (User.IsInRole("Member"))
+                {
+                    <a asp-controller="MyBorrows" asp-action="Index">My Books</a>
+                }
+                <span style="color:#9aa0ac; margin-left:24px;">@User.Identity.Name</span>
+                <form action="/Identity/Account/Logout?returnUrl=/" method="post" style="display:inline;">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" style="background:none; border:none; color:#d8dbe2; cursor:pointer; font-size:0.95rem; margin-left:24px; padding:0;">Logout</button>
+                </form>
+            }
+            else
+            {
+                <a href="/Identity/Account/Login">Login</a>
+            }
+        </div>
+    </nav>
+
+    <main>
+        @RenderBody()
+    </main>
+
+    <footer class="footer-custom">
+        © 2026 Library Management System — All rights reserved.
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

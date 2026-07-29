@@ -1,0 +1,13 @@
+﻿@model LMSystem.Models.Magazine
+@{
+    ViewData["Title"] = "Magazine Details";
+}
+
+<div class="page-container">
+    <h2>@Model.Title</h2>
+    <p><strong>Publisher:</strong> @Model.Publisher</p>
+    <p><strong>Category:</strong> @Model.Category</p>
+    <p><strong>Issue:</strong> @Model.Issue</p>
+    <p><strong>Status:</strong> @(Model.IsBorrowed ? "Borrowed" : "Available")</p>
+    <a class="btn btn-edit" asp-action="Index">Back to Magazines</a>
+</div>

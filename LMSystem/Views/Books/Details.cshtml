@@ -1,0 +1,13 @@
+﻿@model LMSystem.Models.Book
+@{
+    ViewData["Title"] = "Book Details";
+}
+
+<div class="page-container">
+    <h2>@Model.Title</h2>
+    <p><strong>Author:</strong> @Model.Author</p>
+    <p><strong>Genre:</strong> @Model.Genre</p>
+    <p><strong>Year:</strong> @Model.PublicationYear</p>
+    <p><strong>Status:</strong> @(Model.IsBorrowed ? "Borrowed" : "Available")</p>
+    <a class="btn btn-edit" asp-action="Index">Back to Books</a>
+</div>

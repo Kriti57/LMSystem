@@ -1,0 +1,16 @@
+﻿@model LMSystem.Models.Newspaper
+@{
+    ViewData["Title"] = "Add Newspaper";
+}
+
+<div class="page-container">
+    <h2>Add New Newspaper</h2>
+    <form asp-action="Create" method="post" style="max-width:500px;">
+        <div class="mb-3"><label>Title</label><input asp-for="Title" class="form-control" /></div>
+        <div class="mb-3"><label>Publisher</label><input asp-for="Publisher" class="form-control" /></div>
+        <div class="mb-3"><label>Language</label><input asp-for="Language" class="form-control" /></div>
+        <div class="mb-3"><label>Date</label><input asp-for="Date" type="date" class="form-control" /></div>
+        <button type="submit" class="btn btn-add">Save</button>
+        <a class="btn btn-edit" asp-action="Index">Cancel</a>
+    </form>
+</div>

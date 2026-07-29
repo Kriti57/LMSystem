@@ -1,0 +1,148 @@
+@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Library Management</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <style>
+            .login-page {
+                background-color: var(--navy);
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                font-family: 'Segoe UI', sans-serif;
+            }
+
+            .login-brand {
+                color: #fff;
+                font-family: 'Playfair Display', Georgia, serif;
+                font-size: 1.4rem;
+                margin-bottom: 24px;
+            }
+
+            .login-card {
+                background: var(--cream);
+                border-radius: 6px;
+                padding: 36px 40px;
+                width: 360px;
+            }
+
+                .login-card h1 {
+                    font-size: 1.5rem;
+                    margin: 0 0 6px;
+                }
+
+                .login-card p.subtitle {
+                    color: #6b7280;
+                    font-size: 0.9rem;
+                    margin: 0 0 24px;
+                }
+
+                .login-card label {
+                    font-size: 0.8rem;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                    color: #4a4a4a;
+                }
+
+                .login-card .mb-3 {
+                    margin-bottom: 18px;
+                }
+
+                .login-card .checkbox {
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    margin-bottom: 18px;
+                    font-size: 0.9rem;
+                }
+
+            .btn-signin {
+                width: 100%;
+                background: var(--green);
+                color: #fff;
+                border: none;
+                padding: 12px;
+                border-radius: 4px;
+                font-size: 1rem;
+                font-weight: 600;
+                cursor: pointer;
+            }
+
+            .login-links {
+                margin-top: 20px;
+                text-align: center;
+                font-size: 0.85rem;
+            }
+
+                .login-links a {
+                    color: var(--navy);
+                    text-decoration: none;
+                    font-weight: 600;
+                }
+
+            .back-home {
+                text-align: center;
+                margin-top: 20px;
+            }
+
+                .back-home a {
+                    color: #9aa0ac;
+                    font-size: 0.85rem;
+                    text-decoration: none;
+                }
+    </style>
+</head>
+<body>
+    <div class="login-page">
+        <div class="login-brand">📚 Library Management</div>
+        <div class="login-card">
+            <h1>Welcome back</h1>
+            <p class="subtitle">Sign in to manage books and borrow records.</p>
+
+            <form id="account" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+                <div class="mb-3">
+                    <label asp-for="Input.Email">Username or Email</label>
+                    <input asp-for="Input.Email" class="form-control" autocomplete="username" placeholder="e.g. librarian01" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Input.Password">Password</label>
+                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" placeholder="••••••••" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+
+                <div class="checkbox">
+                    <input asp-for="Input.RememberMe" />
+                    <label asp-for="Input.RememberMe">Remember me</label>
+                </div>
+
+                <button id="login-submit" type="submit" class="btn-signin">Sign In →</button>
+            </form>
+
+            <div class="login-links">
+                New here? <a href="/Identity/Account/Register">Request access</a>
+            </div>
+        </div>
+        <div class="back-home">
+            <a href="/">← Back to home</a>
+        </div>
+    </div>
+</body>
+</html>

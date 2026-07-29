@@ -1,0 +1,16 @@
+﻿@model LMSystem.Models.Student
+@{
+    ViewData["Title"] = "Edit Student";
+}
+
+<div class="page-container">
+    <h2>Edit Student</h2>
+    <form asp-action="Edit" method="post" style="max-width:500px;">
+        <input type="hidden" asp-for="Id" />
+        <div class="mb-3"><label>Name</label><input asp-for="Name" class="form-control" /></div>
+        <div class="mb-3"><label>Email</label><input asp-for="Email" class="form-control" /></div>
+        <div class="mb-3"><label>Phone</label><input asp-for="Phone" class="form-control" /></div>
+        <button type="submit" class="btn btn-add">Save</button>
+        <a class="btn btn-edit" asp-action="Index">Cancel</a>
+    </form>
+</div>

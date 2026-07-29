@@ -1,0 +1,39 @@
+﻿@model IEnumerable<LMSystem.Models.Student>
+@{
+    ViewData["Title"] = "Students";
+}
+
+<div class="page-container">
+    <div class="page-header">
+        <div>
+            <h1>Students</h1>
+            <p>Everyone registered to borrow from the library.</p>
+        </div>
+        <a class="btn btn-add" asp-action="Create">+ Add New Student</a>
+    </div>
+
+    <form method="get" class="search-bar">
+        <input type="text" name="search" placeholder="Search by name or email..." />
+    </form>
+
+    <table class="data-table">
+        <thead>
+            <tr><th>Student ID</th><th>Student Name</th><th>Email</th><th>Phone</th><th>Actions</th></tr>
+        </thead>
+        <tbody>
+            @foreach (var student in Model)
+            {
+                <tr>
+                    <td>@student.Id</td>
+                    <td>@student.Name</td>
+                    <td>@student.Email</td>
+                    <td>@student.Phone</td>
+                    <td>
+                        <a class="btn btn-edit" asp-action="Edit" asp-route-id="@student.Id">Edit</a>
+                        <a class="btn btn-delete" asp-action="Delete" asp-route-id="@student.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
