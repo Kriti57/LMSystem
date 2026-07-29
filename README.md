@@ -125,17 +125,6 @@ or launch the project using Visual Studio.
 | Librarian | Manage library resources and borrowing activities |
 | Member | Borrow and return resources, view personal borrow history |
 
-## Screenshots
-
-Add screenshots of:
-
-- Login Page
-- Dashboard
-- Books Module
-- Magazines Module
-- Newspapers Module
-- My Books Page
-
 ## Future Enhancements
 
 - Email notifications for due dates
